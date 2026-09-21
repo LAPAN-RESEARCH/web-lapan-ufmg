@@ -29,6 +29,7 @@ O script `lapan-deploy.sh` que está nesta pasta foi construído para lidar com 
 2. Garanta permissão de execução: `chmod +x lapan-deploy.sh`.
 3. Configure as variáveis globais (nas primeiras linhas do bash script) conforme os caminhos da sua hospedagem.
 4. Adicione a rotina de execução automática no **Cron** (`crontab -e`), de preferência no usuário que tem as permissões do webserver/pastas:
+
 ```cron
 */5 * * * * /caminho/para/lapan-deploy.sh >> /var/log/lapan-deploy.log 2>&1
 ```

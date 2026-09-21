@@ -5,12 +5,12 @@
 [![Decap CMS](https://img.shields.io/badge/Decap_CMS-FF6B00?style=for-the-badge&logo=netlify&logoColor=white)](https://decapcms.org)
 [![CITATION.cff](https://img.shields.io/badge/CITATION.cff-cited-blue?style=for-the-badge&logo=github)](CITATION.cff)
 
-
 @author Prof. Hugo de Paula
 
 Site institucional do LAPAN, construído com Astro + Tailwind CSS + Decap CMS.
 
 Requisitos de runtime:
+
 - Node.js 22.12.0 ou superior
 - npm 10 ou superior
 
@@ -24,18 +24,22 @@ Requisitos de runtime:
 ## Guia rápido
 
 1. Instale dependências:
+
 ```bash
 npm install
 ```
-2. Rode localmente:
+1. Rode localmente:
+
 ```bash
 npm run dev
 ```
-3. Gere build de produção:
+1. Gere build de produção:
+
 ```bash
 npm run build
 ```
-4. Rode as validações de conteúdo e GEO:
+1. Rode as validações de conteúdo e GEO:
+
 ```bash
 npm run check
 ```
@@ -65,6 +69,7 @@ O site final é gerado em `dist/`.
 Use o guia completo em [INSTALL.md](/home/hugo/Documents/LAPAN/dev/lapan-website/INSTALL.md).
 
 Ele inclui:
+
 - pré-requisitos
 - configuração de formulário de contato
 - validação antes de publicar

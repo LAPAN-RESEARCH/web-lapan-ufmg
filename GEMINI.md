@@ -13,18 +13,21 @@ O site do LAPAN é construído com **Astro 6**, **Tailwind CSS 4** e **Decap CMS
 ## 🛠️ Comandos Principais
 
 ### Desenvolvimento
+
 ```bash
 npm install        # Instala dependências
 npm run dev        # Inicia servidor de desenvolvimento (http://localhost:4321)
 ```
 
 ### Build e Produção
+
 ```bash
 npm run build      # Gera o build estático em dist/
 npm run preview    # Visualiza o build localmente
 ```
 
 ### Utilitários
+
 ```bash
 npm run zotero:normalizar  # Normaliza dados do Zotero em content/zotero.json
 ```
@@ -43,9 +46,9 @@ As coleções de conteúdo estão definidas em `src/content.config.ts`:
 - **Idiomas:** Toda a documentação técnica (incluindo este arquivo), comentários de código e conteúdo do site devem ser em **Português (Brasil)**.
 - **CMS:** O painel administrativo está em `/admin` (mapeado fisicamente para `public/lapan-gestao/index.html`). A configuração reside em `public/lapan-gestao/config.yml`.
 - **Imagens:**
-    - Fotos da equipe: `public/images/team/`
-    - Uploads do CMS: `public/images/uploads/`
-    - Assets gerais: `public/images/`
+  - Fotos da equipe: `public/images/team/`
+  - Uploads do CMS: `public/images/uploads/`
+  - Assets gerais: `public/images/`
 - **Publicações:** O arquivo fonte é `content/zotero.json`. Use o script de normalização após atualizar este arquivo para garantir que a interface reflita as mudanças.
 
 ## ⚠️ Observações de Migração

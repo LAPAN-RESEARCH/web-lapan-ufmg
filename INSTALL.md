@@ -9,6 +9,7 @@ Este guia permite instalar, configurar e publicar o site sem precisar conhecer a
 - Git (opcional, mas recomendado)
 
 Verificação:
+
 ```bash
 node -v
 npm -v
@@ -19,6 +20,7 @@ npm -v
 Se já recebeu a pasta, pule esta etapa.
 
 Com Git:
+
 ```bash
 git clone <URL_DO_REPOSITORIO>
 cd lapan-website
@@ -33,6 +35,7 @@ npm install
 ## 4) Configurar formulário de contato (opcional, mas recomendado)
 
 A página `/contato` já possui formulário com os campos:
+
 - Nome
 - E-mail
 - Assunto
@@ -41,11 +44,13 @@ A página `/contato` já possui formulário com os campos:
 Para envio real, configure um endpoint HTTP que receba `POST` em formato `application/x-www-form-urlencoded`.
 
 Crie um arquivo `.env` na raiz do projeto:
+
 ```bash
 PUBLIC_CONTACT_FORM_ENDPOINT=https://SEU-ENDPOINT-DE-ENVIO
 ```
 
 Observação:
+
 - Sem essa variável, o formulário continua visível e validando campos, mas não envia online.
 - Nesse caso, a interface orienta o usuário a usar o e-mail institucional.
 
@@ -56,31 +61,38 @@ npm run dev
 ```
 
 Abra no navegador:
+
 - `http://localhost:4321`
 
 ## 5.1) Usar o Decap CMS
 
 O painel administrativo está em:
+
 - `http://localhost:4321/admin`
 
 Arquivos de configuração:
+
 - `public/admin/index.html`
 - `public/admin/config.yml`
 
 Collections disponíveis no CMS:
+
 - Equipe (`src/content/team`)
 - Eventos (`src/content/events`)
 - Projetos (`src/content/projects`)
 
 Uploads de mídia:
+
 - pasta física: `public/images/uploads`
 - URL pública: `/images/uploads/...`
 
 Observação importante sobre imagens já migradas:
+
 - Fotos da equipe atualmente usadas no site estão em `public/images/team` (nomes normalizados).
 - Esses arquivos já estão vinculados nos conteúdos de `src/content/team`.
 
 Observações para o GitHub backend:
+
 - Repositório configurado: `hugodepaula/lapan-website`
 - Branch: `main`
 - Workflow editorial habilitado (`publish_mode: editorial_workflow`)
@@ -93,6 +105,7 @@ npm run build
 ```
 
 Saída esperada:
+
 - build concluído sem erros
 - pasta `dist/` criada/atualizada
 
@@ -103,6 +116,7 @@ O site é estático. Qualquer hospedagem de arquivos estáticos funciona.
 ### Opção A: Netlify (simples)
 
 Configuração:
+
 - Build command: `npm run build`
 - Publish directory: `dist`
 - Environment variable: `PUBLIC_CONTACT_FORM_ENDPOINT` (se usar formulário com envio)
@@ -110,6 +124,7 @@ Configuração:
 ### Opção B: Vercel
 
 Configuração:
+
 - Framework preset: Astro
 - Build command: `npm run build`
 - Output directory: `dist`
@@ -118,6 +133,7 @@ Configuração:
 ### Opção C: Cloudflare Pages
 
 Configuração:
+
 - Build command: `npm run build`
 - Build output directory: `dist`
 - Environment variable: `PUBLIC_CONTACT_FORM_ENDPOINT` (se usar formulário com envio)
@@ -125,20 +141,23 @@ Configuração:
 ### Opção D: GitHub Pages (build local)
 
 1. Gerar build:
+
 ```bash
 npm run build
 ```
-2. Publicar conteúdo de `dist/` no branch/pasta configurada para Pages.
+1. Publicar conteúdo de `dist/` no branch/pasta configurada para Pages.
 
 ### Opção E: Servidor próprio (Nginx/Apache)
 
 1. Gerar build:
+
 ```bash
 npm run build
 ```
-2. Copiar conteúdo de `dist/` para a pasta pública do servidor.
+1. Copiar conteúdo de `dist/` para a pasta pública do servidor.
 
 Exemplo com `rsync`:
+
 ```bash
 rsync -avz dist/ usuario@servidor:/var/www/lapan/
 ```
@@ -190,17 +209,22 @@ npm run preview  # pré-visualizar build localmente
 ## 10) Solução de problemas
 
 ### Erro em `npm install`
+
 - Atualize Node.js para versão 22.12.0+
 - Remova `node_modules` e `package-lock.json`, depois rode `npm install` novamente
 
 ### Build falha
+
 - Rode:
+
 ```bash
 npm run build
 ```
+
 - Corrija o erro apontado no terminal e repita o build
 
 ### Formulário não envia
+
 - Verifique se `PUBLIC_CONTACT_FORM_ENDPOINT` está definido
 - Confirme se o endpoint aceita `POST` com `application/x-www-form-urlencoded`
 - Verifique CORS no endpoint
