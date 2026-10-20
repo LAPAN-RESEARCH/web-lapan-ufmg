@@ -6,8 +6,9 @@ descricao: Atualmente, as neurociências têm se mostrado uma grande área proem
 impacto: O projeto contribui para o avanço de estudos sobre Rede de Cooperação Científica em Neurociências (CAPES, PROGRAMA NACIONAL      DE      COOPERAÇÃO ACADÊMICA EDITAL Nº 071 /2013) no contexto do LAPAN.
 metodologia: As informações metodológicas disponíveis no currículo indicam investigação aplicada baseada nas atividades e objetivos descritos para o projeto.
 inicio: '2014'
-area: Rede de cooperação científica em neurociências (capes, programa nacional      de      cooperação acadêmica edital nº 071 /2013)
-status: Em andamento
+area: Cooperação acadêmica e neurociências
+status: Concluído
+ultimaRevisao: "2026-10-20"
 imagem: /images/projetos/rede-de-cooperacao-cientifica-em-neurociencias.jpg
 equipe:
 - jerome-baron

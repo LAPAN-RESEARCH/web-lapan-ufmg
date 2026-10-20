@@ -6,7 +6,8 @@ impacto: O projeto contribui para o avanço de estudos sobre processamento visua
 metodologia: As informações metodológicas disponíveis no currículo indicam investigação aplicada baseada nas atividades e objetivos descritos para o projeto.
 inicio: '2010'
 area: Processamento visual
-status: Em andamento
+status: Concluído
+ultimaRevisao: "2026-10-20"
 imagem: /images/projetos/desenvolvimento-da-interface-de-resultados-do-sistema-de-triagem-visual-e-do-limiar-auditivo.jpg
 equipe:
 - fabricio-carvalho-soares

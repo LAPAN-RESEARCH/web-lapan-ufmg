@@ -5,8 +5,9 @@ descricao: '- Pesquisa sobre o histórico de desenvolvimento de rastreadores dos
 impacto: O projeto contribui para o avanço de estudos sobre Desenvolvimento de um sistema de medição do posicionamento da cabeça como parte de um sistema de rastreamento de olhos no contexto do LAPAN.
 metodologia: As informações metodológicas disponíveis no currículo indicam investigação aplicada baseada nas atividades e objetivos descritos para o projeto.
 inicio: '2017'
-area: Desenvolvimento de um sistema de medição do posicionamento da cabeça como parte de um sistema de rastreamento de olhos
-status: Em andamento
+area: Instrumentação e rastreamento ocular
+status: Concluído
+ultimaRevisao: "2026-10-20"
 imagem: /images/projetos/desenvolvimento-de-um-sistema-de-medicao-do-posicionamento-da-cabeca-como-parte-de-um-sistema-de-rastreamento-de-olhos.jpg
 equipe:
 - douglas-de-araujo-vilhena

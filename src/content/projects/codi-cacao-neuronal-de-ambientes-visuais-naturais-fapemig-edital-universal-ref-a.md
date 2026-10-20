@@ -6,8 +6,9 @@ descricao: Muito daquilo de que sabemos sobre os mecanismos neuronais subjacente
 impacto: O projeto contribui para o avanço de estudos sobre Codificação neuronal de ambientes visuais naturais (FAPEMIG, Edital Universal, ref. APQ-00299-13) no contexto do LAPAN.
 metodologia: As informações metodológicas disponíveis no currículo indicam investigação aplicada baseada nas atividades e objetivos descritos para o projeto.
 inicio: '2014'
-area: Codificação neuronal de ambientes visuais naturais (fapemig, edital universal, ref. apq-00299-13)
+area: Neurofisiologia e ambientes visuais naturais
 status: Concluído
+ultimaRevisao: "2026-10-20"
 imagem: /images/projetos/codificacao-neuronal-de-ambientes-visuais-naturais.jpg
 equipe:
 - graciele-ferreira-de-sousa

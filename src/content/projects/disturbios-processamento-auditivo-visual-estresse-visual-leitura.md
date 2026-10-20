@@ -6,7 +6,8 @@ impacto: O estudo contribui para compreender melhor fatores auditivos e visuais 
 metodologia: O currículo descreve uma investigação com foco em rastreamento de alterações de processamento auditivo temporal e análise de sua associação com alterações de processamento visual em estudantes, no contexto da habilidade de leitura.
 inicio: '2016'
 area: Neurovisão e leitura
-status: Em andamento
+status: Concluído
+ultimaRevisao: "2026-10-20"
 imagem: /images/projetos/disturbios-do-processamento-auditivo-visual-e-estresse-visual-na-habilidade-de-leitura.jpg
 equipe:
 - ana-carla-garcia

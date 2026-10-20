@@ -5,8 +5,9 @@ descricao: O estudo objetiva a analisar a influência da modificação da ilumin
 impacto: O projeto contribui para o avanço de estudos sobre Inﬂuência da Visão sobre a Cinemática Corporal no contexto do LAPAN.
 metodologia: As informações metodológicas disponíveis no currículo indicam investigação aplicada baseada nas atividades e objetivos descritos para o projeto.
 inicio: '2017'
-area: Inﬂuência da visão sobre a cinemática corporal
+area: Biomecânica e processamento visual
 status: Concluído
+ultimaRevisao: "2026-10-20"
 imagem: /images/projetos/influencia-da-visao-sobre-a-cinematica-corporal.jpg
 equipe:
 - claudia-de-almeida-ferreira-diniz
