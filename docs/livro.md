@@ -27,7 +27,28 @@ As biografias e a apresentação da obra foram resumidas a partir das orelhas
 e da contracapa fornecidas pelo responsável pelo site, também presentes no
 PDF `CAPA-rev3-VISAO-ALEM-20-20.pdf`. Os nomes, o título e o subtítulo seguem
 a capa. Não foram acrescentados resultados clínicos, depoimentos, sumário,
-número de páginas, editora ou promessas de tratamento.
+número de páginas ou promessas de tratamento.
+
+### Dados da edição e revisão editorial
+
+A ficha catalográfica `ficha-409144.pdf`, da Câmara Brasileira do Livro,
+acrescentou o ISBN **978-65-02-46110-5**, a **1ª edição**, a indicação de
+**Edição dos Autores** e o local **Belo Horizonte, MG**. Esses dados foram
+incluídos em um único bloco e nos metadados `Book` aplicáveis.
+
+O documento recebido indica **2027**. O responsável pelo site confirmou que
+esse é o ano da edição, apesar do lançamento no final de 2026. A página e
+seus metadados usam 2027, conforme a ficha e essa confirmação. O anúncio do
+lançamento no CBNV mantém a data do evento em novembro de 2026.
+CDD, número de controle da ficha e registro da bibliotecária não foram
+incluídos, pois são dados de catalogação sem utilidade direta para o pedido.
+
+A revisão retirou a seção de origem e as perguntas frequentes que repetiam
+a proposta da obra e as instruções de compra. O título e o subtítulo completos
+ficaram na abertura; a seção de autores usa apenas “Autores”. Também foram
+retirados a legenda redundante da capa, os rótulos temáticos repetidos na
+abertura e a reapresentação dos autores na área de compra. Preço e botões
+permanecem no início e no fim para permitir o pedido durante a navegação.
 
 Links de divulgação consultados em 10 de novembro de 2026:
 

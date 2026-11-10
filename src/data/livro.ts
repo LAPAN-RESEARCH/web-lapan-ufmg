@@ -1,4 +1,4 @@
-// Conteúdo editorial baseado nas capas e orelhas fornecidas pelos autores.
+// Conteúdo editorial baseado nas capas, orelhas e ficha catalográfica recebidas.
 // Fontes e orientação de atualização em docs/livro.md.
 export const livro = {
   titulo: "Visão Além de 20/20",
@@ -6,6 +6,11 @@ export const livro = {
   complemento:
     "Distúrbios Neurovisuais, Neurossensoriais, Aprendizagem e o que escapa ao exame oftalmológico",
   volume: "Volume I",
+  isbn: "978-65-02-46110-5",
+  edicao: 1,
+  ano: 2027,
+  editora: "Edição dos Autores",
+  local: "Belo Horizonte, MG",
   preco: 289,
   moeda: "BRL",
   whatsapp: "5531984043145",
