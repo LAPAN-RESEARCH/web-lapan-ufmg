@@ -42,7 +42,7 @@ export const autores = [
   {
     nome: "Jerome Baron",
     area: "Neurociência e percepção visual",
-    foto: "/images/team/jerome-baron.jpg",
+    foto: "/images/team/jerome-baron-retrato.jpg",
     bio: "Professor de Fisiologia e Biofísica da UFMG, graduado em Ciências Biológicas pela University of Sussex e doutor em Neurofisiologia pela University of Oxford. Atuou no Max Planck Institute for Brain Research e no CNRS. Pesquisa visão humana e animal, percepção, cor, processamento visual e retina.",
     perfil: "/equipe/jerome-baron/",
   },
