@@ -33,6 +33,7 @@ const breadcrumbLabels: Record<string, string> = {
   concluidos: "Concluídos",
   "em-andamento": "Em andamento",
   publicacoes: "Publicações",
+  livro: "Visão Além de 20/20",
   "sobre-o-laboratorio": "Sobre o Laboratório",
   "historia-e-fundadores": "História e fundadores",
   "infraestrutura-e-equipamentos": "Infraestrutura e equipamentos",

@@ -1,0 +1,32 @@
+---
+import { livro, precoFormatado } from "../data/livro";
+---
+
+<section class="book-feature" aria-labelledby="livro-destaque">
+  <div class="book-feature-copy">
+    <p class="book-feature-label">Livro · {livro.volume}</p>
+    <h2 id="livro-destaque">{livro.titulo}</h2>
+    <p class="book-feature-subtitle">{livro.subtitulo}</p>
+    <p class="book-feature-description">Ricardo Guimarães, Jerome Baron e Márcia Reis Guimarães reúnem neurociência, oftalmologia e experiência clínica em uma obra sobre o que significa ver bem.</p>
+    <div class="book-feature-action"><a href="/livro/">Conheça o livro <span aria-hidden="true">→</span></a><span>{precoFormatado} · Pedidos pelo WhatsApp</span></div>
+  </div>
+  <a href="/livro/" tabindex="-1" aria-hidden="true"><img src={livro.imagem} alt="" width="1199" height="1312" loading="lazy" decoding="async" /></a>
+</section>
+
+<style>
+  .book-feature { display: grid; grid-template-columns: 1fr 240px; align-items: center; gap: 40px; max-width: 1400px; margin: 48px auto 0; padding: 36px 48px; background: #071b2b; border: 1px solid #a6e0d840; border-radius: 24px; color: #e9eeeb; overflow: hidden; }
+  .book-feature-label { margin: 0 0 16px; color: #a6e0d8; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+  .book-feature h2 { color: #e9eeeb; font-family: "Literata", Georgia, serif; font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 500; line-height: 1.2; }
+  .book-feature-subtitle { margin-top: 12px; font-family: "Literata", Georgia, serif; font-size: 1.15rem; color: #a6e0d8; }
+  .book-feature-description { max-width: 680px; margin-top: 20px; color: #bbccce; font-size: 0.9rem; line-height: 1.8; }
+  .book-feature-action { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; margin-top: 24px; }
+  .book-feature-action a { display: inline-flex; align-items: center; gap: 24px; padding: 12px 20px; border-radius: 5px; color: #092d35; background: #a6e0d8; font-size: 0.85rem; font-weight: 800; }
+  .book-feature-action a:hover { background: #c9f1eb; }
+  .book-feature-action a:focus-visible { outline: 3px solid #f9b77d; outline-offset: 5px; }
+  .book-feature-action > span { font-size: 0.73rem; color: #bbccce; }
+  .book-feature img { width: 100%; height: auto; }
+  @media (max-width: 700px) {
+    .book-feature { grid-template-columns: 1fr; gap: 24px; padding: 32px 28px; }
+    .book-feature > a { grid-row: 1; width: 190px; margin-inline: auto; }
+  }
+</style>

@@ -21,6 +21,7 @@ interface Props {
   noindex?: boolean;
   breadcrumbs?: { name: string; item?: string }[];
   structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  fullWidth?: boolean;
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   noindex = false,
   breadcrumbs,
   structuredData,
+  fullWidth = false,
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
@@ -80,7 +82,14 @@ const navItems = [
       { label: "Concluídos", href: "/projetos/concluidos" },
     ],
   },
-  { label: "Publicações", href: "/publicacoes" },
+  {
+    label: "Publicações",
+    href: "/publicacoes",
+    children: [
+      { label: "Produção científica", href: "/publicacoes" },
+      { label: "Livro: Visão Além de 20/20", href: "/livro/" },
+    ],
+  },
   { label: "Eventos", href: "/eventos" },
   { label: "Equipe", href: "/equipe" },
   { label: "Parceiros", href: "/parceiros" },
@@ -169,7 +178,7 @@ const socialLinks = [
         <div class="flex items-center justify-between py-3 md:py-4">
           <a
             href="/"
-            class="inline-flex items-center gap-3 rounded-md transition hover:opacity-90"
+            class="inline-flex shrink-0 items-center gap-3 rounded-md transition hover:opacity-90"
           >
             <img
               src="/images/logo_rect.png"
@@ -180,14 +189,14 @@ const socialLinks = [
             />
           </a>
 
-          <nav class="hidden lg:block" aria-label="Navegação principal">
+          <nav class="hidden xl:block" aria-label="Navegação principal">
             <ul class="flex items-center gap-1 lg:gap-2">
               {
                 navItems.map((item) => (
                   <li class="group relative">
                     <a
                       href={item.href}
-                      class="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-bold uppercase tracking-widest text-on-surface-variant transition-all duration-300 hover:text-primary hover:-translate-y-0.5"
+                      class="inline-flex items-center gap-2 rounded-md px-3 py-2 text-xs font-bold uppercase tracking-wider text-on-surface-variant transition-all duration-300 hover:text-primary hover:-translate-y-0.5 2xl:px-4 2xl:text-sm 2xl:tracking-widest"
                     >
                       {item.label}
                       {item.children && <span aria-hidden="true" class="text-[10px] opacity-50">▾</span>}
@@ -214,7 +223,7 @@ const socialLinks = [
             </ul>
           </nav>
 
-          <details class="group relative lg:hidden">
+          <details class="group relative xl:hidden">
             <summary
               class="inline-flex cursor-pointer list-none items-center rounded-md border border-outline-variant/30 px-3 py-2 text-xs font-bold uppercase tracking-widest text-on-surface-variant transition hover:bg-primary/10 hover:text-primary"
               aria-label="Abrir menu"
@@ -275,10 +284,10 @@ const socialLinks = [
 
     <main
       id="conteudo-principal"
-      class="mx-auto w-full max-w-content px-4 py-10 sm:px-6 lg:px-8 lg:py-12"
+      class={fullWidth ? "w-full" : "mx-auto w-full max-w-content px-4 py-10 sm:px-6 lg:px-8 lg:py-12"}
     >
       {
-        pathname !== "/" && resolvedBreadcrumbs.length > 1 && (
+        !fullWidth && pathname !== "/" && resolvedBreadcrumbs.length > 1 && (
           <nav aria-label="Breadcrumb" class="mb-12 text-xs font-bold uppercase tracking-widest text-on-surface-variant/80">
             <ol class="flex flex-wrap items-center gap-2">
               {resolvedBreadcrumbs.map((crumb, index) => {
@@ -308,7 +317,7 @@ const socialLinks = [
       <slot />
     </main>
 
-    <footer class="mt-20 bg-surface-container-low text-on-surface-variant border-t border-outline-variant/5">
+    <footer class:list={[!fullWidth && "mt-20", "bg-surface-container-low text-on-surface-variant border-t border-outline-variant/5"]}>
       <div
         class="mx-auto grid w-full max-w-content gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.9fr] lg:px-8"
       >

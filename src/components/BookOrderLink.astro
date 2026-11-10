@@ -1,0 +1,52 @@
+---
+import { linkPedido } from "../data/livro";
+import BookIcon from "./BookIcon.astro";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<a class:list={["book-order-link", { compact }]} href={linkPedido} target="_blank" rel="noopener noreferrer">
+  <BookIcon name="whatsapp" />
+  <span>{compact ? "Pedir meu exemplar" : "Quero meu exemplar"}</span>
+  <BookIcon name="external" />
+</a>
+
+<style>
+  .book-order-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    min-height: 56px;
+    padding: 1rem 1.4rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background: #a6e0d8;
+    color: #092d35;
+    font-size: 0.92rem;
+    font-weight: 800;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background 180ms, box-shadow 180ms;
+  }
+
+  .book-order-link:hover {
+    background: #c9f1eb;
+    box-shadow: 0 4px 24px #071a2620;
+  }
+
+  .book-order-link:focus-visible {
+    outline: 3px solid #f9b77d;
+    outline-offset: 5px;
+  }
+
+  .compact {
+    min-height: 44px;
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+  }
+</style>

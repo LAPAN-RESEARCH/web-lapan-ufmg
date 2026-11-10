@@ -39,6 +39,7 @@ export const GET: APIRoute = async ({ site }) => {
     `- [Pesquisa](${buildAbsoluteUrl("/pesquisa/", baseUrl)}): linhas de pesquisa, metodologias e perguntas frequentes.`,
     `- [Projetos](${buildAbsoluteUrl("/projetos/", baseUrl)}): hub canônico de projetos em andamento e concluídos.`,
     `- [Publicações](${buildAbsoluteUrl("/publicacoes/", baseUrl)}): produção científica normalizada e agrupada por ano.`,
+    `- [Livro: Visão Além de 20/20](${buildAbsoluteUrl("/livro/", baseUrl)}): apresentação da obra, autores, repercussão e pedidos pelo WhatsApp.`,
     `- [Equipe](${buildAbsoluteUrl("/equipe/", baseUrl)}): diretório canônico de pessoas vinculadas ao laboratório.`,
     `- [Eventos](${buildAbsoluteUrl("/eventos/", baseUrl)}): agenda e histórico de eventos científicos.`,
     `- [Contato](${buildAbsoluteUrl("/contato/", baseUrl)}): contato institucional, escopo de atendimento e endereço.`,

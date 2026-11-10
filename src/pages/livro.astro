@@ -1,0 +1,394 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BookIcon from "../components/BookIcon.astro";
+import BookOrderLink from "../components/BookOrderLink.astro";
+import { autores, livro, midias, precoFormatado } from "../data/livro";
+import { buildAbsoluteUrl, buildAssetUrl } from "../lib/geo";
+
+const descricao = "Conheça Visão Além de 20/20 — Fundamentos da Neurovisão, de Ricardo Guimarães, Jerome Baron e Márcia Reis Guimarães. Volume I por R$ 289,00. Pedidos pelo WhatsApp.";
+const url = buildAbsoluteUrl("/livro/", Astro.site);
+const livroSchema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "@id": `${url}#livro`,
+  name: `${livro.titulo}: ${livro.subtitulo}`,
+  description: livro.complemento,
+  inLanguage: "pt-BR",
+  image: buildAssetUrl(livro.capa, Astro.site),
+  url,
+  author: autores.map((autor) => ({
+    "@type": "Person",
+    name: autor.nome,
+    url: buildAbsoluteUrl(autor.perfil, Astro.site),
+  })),
+  offers: {
+    "@type": "Offer",
+    price: livro.preco,
+    priceCurrency: livro.moeda,
+    url: `${url}#adquirir`,
+  },
+};
+---
+
+<BaseLayout
+  title={`${livro.titulo} — ${livro.subtitulo} | LAPAN`}
+  description={descricao}
+  image={livro.capa}
+  fullWidth
+  structuredData={livroSchema}
+>
+  <div class="book-page">
+    <nav class="book-nav" aria-label="Navegação do livro">
+      <div class="book-container book-nav-inner">
+        <a class="book-nav-title" href="#livro"><BookIcon name="book" /><span>Visão Além de 20/20</span></a>
+        <div class="book-nav-sections">
+          <a href="#sobre">A obra</a>
+          <a href="#autores">Autores</a>
+          <a href="#na-midia">Na mídia</a>
+          <a href="#adquirir">Adquira o livro <BookIcon name="arrow" /></a>
+        </div>
+      </div>
+    </nav>
+
+    <section id="livro" class="book-hero" aria-labelledby="titulo-livro">
+      <div class="book-container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="small-line" aria-hidden="true"></span> Um livro, três perspectivas sobre a visão</p>
+          <h1 id="titulo-livro">Visão <span>Além de 20/20</span></h1>
+          <p class="hero-subtitle">{livro.subtitulo}</p>
+          <p class="hero-description">Dos mecanismos do cérebro à experiência do paciente. Uma obra que aproxima neurociência, oftalmologia e prática clínica para ampliar a compreensão do que significa ver bem.</p>
+          <p class="hero-authors">Ricardo Guimarães <span aria-hidden="true">·</span> Jerome Baron<br />Márcia Reis Guimarães</p>
+          <div class="hero-order">
+            <div class="hero-price"><span>{livro.volume} · Livro impresso</span><strong>{precoFormatado}</strong></div>
+            <BookOrderLink />
+          </div>
+          <p class="order-note">Pedidos pelo WhatsApp. Combine pagamento e entrega no atendimento.</p>
+          <a class="hero-explore" href="#sobre">Conheça a obra <span aria-hidden="true">↓</span></a>
+        </div>
+        <figure class="hero-book">
+          <div class="book-halo" aria-hidden="true"></div>
+          <img src={livro.imagem} width="1199" height="1312" alt="Livro Visão Além de 20/20 — Fundamentos da Neurovisão, Volume I. Capa azul-escura com ilustração do cérebro e do olho conectados por vias visuais coloridas." loading="eager" fetchpriority="high" decoding="async" />
+          <figcaption><span aria-hidden="true">01 /</span> {livro.volume} — Fundamentos da Neurovisão</figcaption>
+        </figure>
+      </div>
+      <div class="hero-bottom book-container">
+        <span>Neurociência da visão</span><span>Função visual</span><span>Percepção e aprendizagem</span>
+      </div>
+    </section>
+
+    <section id="sobre" class="book-section overview" aria-labelledby="titulo-sobre">
+      <div class="book-container">
+        <div class="section-heading overview-heading">
+          <div><p class="eyebrow">A pergunta que atravessa a obra</p><h2 id="titulo-sobre">O que significa <em>ver bem?</em></h2></div>
+          <p>Enxergar uma imagem nítida é parte da experiência visual. Compreender a visão também exige acompanhar como essa informação é processada e utilizada na vida cotidiana.</p>
+        </div>
+        <div class="perspectives">
+          <article><span class="perspective-number">01</span><h3>O cérebro que percebe</h3><p>A pesquisa básica investiga como a evolução, a retina e o cérebro organizam a percepção de cor, forma e movimento na visão humana e animal.</p><span class="perspective-field">Neurociência básica</span></article>
+          <article><span class="perspective-number">02</span><h3>O olho e sua função</h3><p>A oftalmologia reúne o conhecimento sobre estrutura ocular, doença e cirurgia, em diálogo com a função visual e os limites das medidas tradicionais.</p><span class="perspective-field">Oftalmologia</span></article>
+          <article><span class="perspective-number">03</span><h3>A pessoa que vê</h3><p>A Neurovisão clínica acompanha as dificuldades para usar a visão com estabilidade, conforto e eficiência, inclusive quando a acuidade não explica todas as queixas.</p><span class="perspective-field">Neurovisão clínica</span></article>
+        </div>
+        <div class="book-subject"><BookIcon name="book" /><p>{livro.complemento}.</p></div>
+      </div>
+    </section>
+
+    <section class="book-section origin" aria-labelledby="titulo-origem">
+      <div class="book-container origin-grid">
+        <div class="origin-label"><p class="eyebrow">O encontro que deu origem ao livro</p><h2 id="titulo-origem">Entre o laboratório,<br /> o consultório<br /> e a universidade.</h2><a href="/sobre-o-laboratorio/" class="text-link">Conheça o LAPAN <BookIcon name="arrow" /></a></div>
+        <div class="origin-copy"><p>O livro reúne três trajetórias complementares de pesquisa, ensino e prática clínica. No LAPAN, essa colaboração encontrou um espaço de investigação dos distúrbios neurovisuais e das relações entre visão e aprendizagem.</p><p>Os autores aproximam fundamentos científicos, observação clínica e aplicação do conhecimento para acompanhar o caminho que vai dos mecanismos biológicos da visão à experiência do paciente.</p><p class="reader-note">Uma leitura para profissionais e estudantes da saúde e da educação, pesquisadores e leitores interessados em compreender a visão de forma integrada.</p><a class="text-link" href={livro.capaCompleta} target="_blank" rel="noopener noreferrer">Leia a contracapa e as orelhas <span class="file-type">PDF · 1,5 MB</span><BookIcon name="external" /></a></div>
+      </div>
+    </section>
+
+    <section id="autores" class="book-section authors" aria-labelledby="titulo-autores">
+      <div class="book-container">
+        <div class="section-heading"><div><p class="eyebrow">Quem escreve</p><h2 id="titulo-autores">Três olhares.<br /><em>Uma visão integrada.</em></h2></div><p>Conheça as trajetórias que conectam a pesquisa dos mecanismos da visão à experiência clínica.</p></div>
+        <div class="author-grid">
+          {autores.map((autor) => (
+            <article class="author-card">
+              <div class="author-intro"><img src={autor.foto} alt={autor.nome} width="88" height="88" loading="lazy" decoding="async" /><p>{autor.area}</p></div>
+              <h3>{autor.nome}</h3><p class="author-bio">{autor.bio}</p>
+              <div class="author-links"><a class="text-link" href={autor.perfil}>Perfil no LAPAN <BookIcon name="arrow" /></a>{autor.site && <a class="text-link" href={autor.site} target="_blank" rel="noopener noreferrer">Site do autor <BookIcon name="external" /></a>}</div>
+            </article>
+          ))}
+        </div>
+        <p class="source-note">Biografias resumidas a partir das orelhas do livro.</p>
+      </div>
+    </section>
+
+    <section id="na-midia" class="book-section media" aria-labelledby="titulo-midia">
+      <div class="book-container">
+        <div class="section-heading"><div><p class="eyebrow">Para continuar a conversa</p><h2 id="titulo-midia">O livro <em>em circulação.</em></h2></div><p>Entrevista, artigos e lançamento: explore as ideias e as histórias por trás da obra.</p></div>
+        <div class="media-grid">
+          <a class="radio-feature" href={midias.entrevista} target="_blank" rel="noopener noreferrer">
+            <div class="radio-top"><span class="media-label">Entrevista · BandNews FM</span><BookIcon name="external" /></div>
+            <div class="audio-art" aria-hidden="true"><span class="play-circle"><BookIcon name="play" /></span><span class="audio-wave"></span></div>
+            <div><p class="radio-platform">No YouTube</p><h3>Uma conversa sobre<br />Visão Além de 20/20</h3><p>Acompanhe a entrevista de divulgação do livro na rádio BandNews FM.</p><span class="radio-action">Assistir à entrevista <BookIcon name="arrow" /></span><span class="timestamp">O link abre no trecho indicado: 1h16min15s.</span></div>
+          </a>
+          <div class="media-list">
+            <a class="media-item" href={midias.artigo} target="_blank" rel="noopener noreferrer"><span class="media-label">Artigo · LinkedIn</span><h3>A década da Visão que ninguém assinou</h3><p>Ricardo Guimarães apresenta reflexões sobre visão funcional e a proposta do livro.</p><span class="media-item-end">Ler o artigo <BookIcon name="external" /></span></a>
+            <a class="media-item" href={midias.bastidores} target="_blank" rel="noopener noreferrer"><span class="media-label">Bastidores · LinkedIn</span><h3>Vinte anos para escrever um livro</h3><p>O autor conta como as perguntas do consultório deram origem à obra.</p><span class="media-item-end">Conhecer a história <BookIcon name="external" /></span></a>
+            <a class="media-item" href={midias.lancamento}><span class="media-label">Lançamento · CBNV 2026</span><h3>12º Congresso Brasileiro de Neurociências da Visão</h3><p>Lançamento anunciado para o congresso de 11 a 13 de novembro de 2026, no CAD 1 da UFMG, em Belo Horizonte.</p><span class="media-item-end">Conhecer o evento <BookIcon name="arrow" /></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="adquirir" class="purchase" aria-labelledby="titulo-adquirir">
+      <div class="book-container purchase-grid">
+        <div class="purchase-copy"><p class="eyebrow">Seu próximo olhar sobre a visão</p><h2 id="titulo-adquirir">Leve essa perspectiva<br /> <em>para a sua leitura.</em></h2><p>{livro.titulo}<br /><strong>{livro.subtitulo}</strong><br />{livro.volume} · Livro impresso</p><p class="purchase-authors">Ricardo Guimarães, Jerome Baron<br /> e Márcia Reis Guimarães.</p></div>
+        <div class="purchase-box"><p class="purchase-label">Adquira seu exemplar</p><p class="purchase-price">{precoFormatado}</p><BookOrderLink /><p class="purchase-instructions">O botão abre o WhatsApp com uma mensagem pronta para solicitar o livro. Envie a mensagem e combine pagamento, frete e entrega com a equipe.</p><div class="purchase-contact"><span>WhatsApp para pedidos</span><a href={`https://wa.me/${livro.whatsapp}`} target="_blank" rel="noopener noreferrer">{livro.telefone} <BookIcon name="external" /></a></div></div>
+      </div>
+    </section>
+
+    <section class="book-section questions" aria-labelledby="titulo-duvidas">
+      <div class="book-container questions-grid"><div><p class="eyebrow">Antes do pedido</p><h2 id="titulo-duvidas">Dúvidas frequentes</h2></div><div class="question-list"><details><summary>Como faço para comprar?<span aria-hidden="true">+</span></summary><p>Clique em “Quero meu exemplar” para abrir uma conversa no WhatsApp com o contato de pedidos. A mensagem já inclui o título e o valor de {precoFormatado}. Envie-a para receber as orientações de compra.</p></details><details><summary>Como funcionam o pagamento e a entrega?<span aria-hidden="true">+</span></summary><p>As formas de pagamento, o valor do frete, os prazos e as opções de entrega devem ser combinados diretamente no atendimento pelo WhatsApp.</p></details><details><summary>Qual é a proposta deste volume?<span aria-hidden="true">+</span></summary><p>O {livro.volume} apresenta os fundamentos da Neurovisão a partir de três perspectivas complementares: neurociência básica, oftalmologia e Neurovisão clínica. Aborda distúrbios neurovisuais, neurossensoriais, aprendizagem e aspectos da visão que vão além da medida de acuidade visual.</p></details></div></div>
+    </section>
+
+    <aside class="mobile-order" aria-label="Pedido do livro pelo WhatsApp"><div><span>{livro.volume}</span><strong>{precoFormatado}</strong></div><BookOrderLink compact /></aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .book-page {
+    --book-navy: #071b2b;
+    --book-ink: #18323b;
+    --book-muted: #51636a;
+    --book-paper: #f7f6f0;
+    --book-teal: #a6e0d8;
+    color: var(--book-ink);
+    background: var(--book-paper);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .book-page :is(h1, h2, h3, p, figure) { margin: 0; }
+  .book-page :is(h1, h2) { font-family: "Literata", Georgia, serif; font-weight: 500; letter-spacing: -0.045em; }
+  .book-page :is(h2, h3) { color: inherit; }
+  .book-page h2 { font-size: clamp(2rem, 3.5vw, 3.2rem); line-height: 1.25; }
+  .book-page h2 em { font-weight: 500; }
+  .book-page :is(a, summary):focus-visible { outline: 3px solid #a86227; outline-offset: 5px; }
+  .book-page :is(section[id], h2[id]) { scroll-margin-top: 120px; }
+  .book-container { width: min(100% - 6rem, 1180px); margin-inline: auto; }
+  .book-section { padding-block: 96px; }
+  .book-page .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.15em; line-height: 1.6; text-transform: uppercase; }
+  .book-nav { background: var(--book-navy); color: #d2dfdf; border-bottom: 1px solid #ffffff1c; }
+  .book-nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 68px; }
+  .book-nav-title { display: inline-flex; align-items: center; gap: 12px; font-family: "Literata", Georgia, serif; font-size: 0.95rem; }
+  .book-nav-title :global(svg) { color: var(--book-teal); }
+  .book-nav-sections { display: flex; align-items: center; gap: 30px; font-size: 0.74rem; font-weight: 600; }
+  .book-nav-sections a { display: inline-flex; align-items: center; gap: 10px; padding-block: 18px; }
+  .book-nav a:hover { color: var(--book-teal); }
+  .book-hero { overflow: hidden; color: #e9eeeb; background: var(--book-navy); }
+  .hero-grid { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: 30px; padding-top: 60px; padding-bottom: 48px; }
+  .hero-copy { position: relative; z-index: 1; padding-bottom: 12px; }
+  .hero-copy .eyebrow { color: var(--book-teal); font-size: 0.65rem; letter-spacing: 0.12em; }
+  .small-line { flex-shrink: 0; width: 28px; height: 1px; background: var(--book-teal); }
+  .book-hero h1 { color: #f5f5ef; font-size: clamp(3.8rem, 6.4vw, 6rem); line-height: 1.1; }
+  .book-hero h1 span { display: block; color: var(--book-teal); font-size: 0.78em; font-style: italic; margin-top: 10px; }
+  .book-page .hero-subtitle { margin-top: 24px; font-family: "Literata", Georgia, serif; font-size: clamp(1.1rem, 1.8vw, 1.5rem); color: #e0e9e6; letter-spacing: -0.02em; }
+  .book-page .hero-description { max-width: 490px; margin-top: 22px; color: #bbccce; font-size: 0.96rem; line-height: 1.85; }
+  .book-page .hero-authors { margin-top: 24px; color: #dce6e3; font-size: 0.78rem; line-height: 1.9; }
+  .hero-authors span { margin-inline: 6px; color: var(--book-teal); }
+  .hero-order { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-top: 32px; }
+  .hero-price { display: grid; gap: 3px; }
+  .hero-price span { font-size: 0.65rem; color: #bbccce; }
+  .hero-price strong { font-size: 1.8rem; line-height: 1.2; letter-spacing: -0.04em; font-weight: 600; color: #f5f5ef; }
+  .book-page .order-note { margin-top: 16px; font-size: 0.67rem; color: #bbccce; max-width: 430px; }
+  .hero-explore { display: inline-flex; align-items: center; gap: 20px; margin-top: 30px; color: #d4e5e3; font-size: 0.74rem; }
+  .hero-explore:hover { color: var(--book-teal); }
+  .hero-explore span { font-size: 1.3rem; }
+  .hero-book { position: relative; min-width: 0; align-self: center; }
+  .hero-book img { position: relative; z-index: 1; display: block; width: 112%; max-width: none; height: auto; margin-left: -4%; filter: drop-shadow(0 20px 25px #0004); }
+  .book-halo { position: absolute; inset: 12% -15% 9% -10%; background: radial-gradient(ellipse, #4e9ea728, transparent 70%); }
+  .hero-book figcaption { position: relative; z-index: 1; text-align: center; font-size: 0.6rem; color: #bbccce; letter-spacing: 0.07em; margin-top: 18px; }
+  .hero-book figcaption span { margin-right: 10px; color: var(--book-teal); }
+  .hero-bottom { display: flex; flex-wrap: wrap; gap: 32px; padding-block: 22px; border-top: 1px solid #ffffff24; color: #a6bfc3; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.13em; }
+  .hero-bottom span + span::before { content: "/"; margin-right: 32px; color: #68968d; }
+  .section-heading { display: grid; grid-template-columns: 1.4fr 1fr; align-items: end; gap: 64px; margin-bottom: 52px; }
+  .section-heading > p { max-width: 430px; color: var(--book-muted); font-size: 0.92rem; }
+  .overview-heading { align-items: center; }
+  .perspectives { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .perspectives article { padding-top: 24px; border-top: 1px solid #18323b40; }
+  .perspective-number { color: #5b787a; font-size: 0.7rem; letter-spacing: 0.08em; }
+  .perspectives h3 { margin-top: 24px; font-family: "Literata", Georgia, serif; font-size: 1.3rem; font-weight: 500; letter-spacing: -0.02em; }
+  .perspectives p { margin-top: 15px; font-size: 0.88rem; color: var(--book-muted); }
+  .perspective-field { display: inline-block; margin-top: 24px; color: #356569; font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+  .book-subject { display: flex; align-items: center; gap: 18px; margin-top: 54px; padding-top: 25px; border-top: 1px solid #18323b29; font-family: "Literata", Georgia, serif; font-size: 0.89rem; font-style: italic; }
+  .book-subject :global(svg) { flex-shrink: 0; color: #547b79; }
+  .origin { background: #e9eeea; }
+  .origin-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 100px; }
+  .origin h2 { font-size: clamp(2rem, 3.4vw, 3rem); }
+  .origin-label > .text-link { margin-top: 32px; }
+  .origin-copy > p { color: #425d62; font-size: 0.93rem; }
+  .origin-copy > p + p { margin-top: 20px; }
+  .origin-copy .reader-note { border-left: 2px solid #6b9390; margin-top: 28px; padding-left: 22px; color: var(--book-ink); font-weight: 500; }
+  .origin-copy .text-link { margin-top: 30px; flex-wrap: wrap; }
+  .text-link { display: inline-flex; align-items: center; gap: 10px; color: #285e62; font-size: 0.77rem; font-weight: 700; text-decoration: underline; text-decoration-color: #285e6240; text-underline-offset: 5px; }
+  .text-link:hover { text-decoration-color: currentColor; }
+  .file-type { font-size: 0.6rem; font-weight: 500; color: var(--book-muted); }
+  .author-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .author-card { display: flex; flex-direction: column; padding-top: 28px; border-top: 1px solid #18323b40; }
+  .author-intro { display: flex; align-items: center; gap: 20px; }
+  .author-intro img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; object-position: center 25%; background: #dfe7e2; }
+  .author-intro p { max-width: 130px; color: #356569; font-size: 0.64rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.8; }
+  .author-card h3 { margin-top: 24px; font-family: "Literata", Georgia, serif; font-weight: 500; font-size: 1.3rem; line-height: 1.4; letter-spacing: -0.035em; }
+  .author-card .author-bio { margin-top: 16px; margin-bottom: 26px; color: var(--book-muted); font-size: 0.84rem; line-height: 1.85; }
+  .author-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: auto; }
+  .author-links .text-link { font-size: 0.68rem; }
+  .book-page .source-note { margin-top: 32px; color: var(--book-muted); font-size: 0.65rem; }
+  .media { background: #ecefe9; }
+  .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .radio-feature { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; padding: 36px; background: #173d46; color: #edf3eb; border-radius: 4px; transition: background 180ms; }
+  .radio-feature:hover { background: #1d4953; }
+  .radio-top { display: flex; align-items: center; justify-content: space-between; }
+  .media-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.6; }
+  .radio-feature .media-label { color: #b4d9cf; }
+  .audio-art { display: flex; align-items: center; gap: 22px; min-height: 90px; }
+  .play-circle { display: grid; place-items: center; width: 84px; height: 84px; border: 1px solid #a6e0d880; border-radius: 50%; color: var(--book-teal); flex-shrink: 0; transition: background 180ms; }
+  .radio-feature:hover .play-circle { background: #ffffff12; }
+  .play-circle :global(svg) { width: 30px; height: 30px; margin-left: 1px; }
+  .audio-wave { width: 100%; height: 72px; background: repeating-linear-gradient(90deg, #b7d9cb88 0 2px, transparent 2px 8px); clip-path: polygon(0 40%, 8% 26%, 13% 40%, 19% 10%, 25% 30%, 32% 0, 38% 35%, 43% 24%, 50% 40%, 57% 15%, 63% 35%, 69% 4%, 75% 30%, 81% 10%, 86% 35%, 93% 24%, 100% 40%, 100% 60%, 93% 76%, 86% 65%, 81% 90%, 75% 70%, 69% 96%, 63% 65%, 57% 85%, 50% 60%, 43% 76%, 38% 65%, 32% 100%, 25% 70%, 19% 90%, 13% 60%, 8% 74%, 0 60%); }
+  .radio-platform { color: #b4d9cf; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; }
+  .radio-feature h3 { margin-top: 16px; font-family: "Literata", Georgia, serif; font-size: clamp(1.7rem, 2.4vw, 2.2rem); font-weight: 500; line-height: 1.35; }
+  .radio-feature h3 + p { margin-top: 18px; font-size: 0.88rem; color: #cbdfda; max-width: 330px; }
+  .radio-action { display: flex; align-items: center; gap: 14px; margin-top: 30px; font-size: 0.8rem; font-weight: 700; color: var(--book-teal); }
+  .timestamp { display: block; margin-top: 10px; font-size: 0.65rem; color: #cbdfda; }
+  .media-list { display: grid; }
+  .media-item { display: block; padding-block: 24px; border-top: 1px solid #18323b40; }
+  .media-item:first-child { padding-top: 0; border-top: none; }
+  .media-item:last-child { padding-bottom: 0; }
+  .media-item .media-label { color: #356569; }
+  .media-item h3 { margin-top: 10px; font-family: "Literata", Georgia, serif; font-weight: 500; font-size: 1.25rem; line-height: 1.4; }
+  .media-item > p { margin-top: 9px; color: var(--book-muted); font-size: 0.81rem; }
+  .media-item-end { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 16px; color: #285e62; font-size: 0.7rem; font-weight: 700; }
+  .media-item:hover h3 { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+  .purchase { background: var(--book-navy); color: #e9eeeb; padding-block: 85px; }
+  .purchase-grid { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 80px; }
+  .purchase .eyebrow { color: var(--book-teal); }
+  .purchase h2 em { color: var(--book-teal); }
+  .purchase-copy > p:not(.eyebrow) { margin-top: 28px; color: #bbccce; font-size: 0.88rem; }
+  .purchase-copy strong { font-weight: 500; }
+  .purchase-copy .purchase-authors { font-size: 0.75rem; }
+  .purchase-box { background: #102b3a; padding: 36px; border: 1px solid #a6e0d829; border-radius: 4px; }
+  .purchase-label { color: #bbccce; font-size: 0.7rem; }
+  .purchase-box .purchase-price { font-size: 2.8rem; line-height: 1.4; font-weight: 500; letter-spacing: -0.04em; margin-block: 8px 22px; }
+  .purchase-box :global(.book-order-link) { width: 100%; }
+  .purchase-box .purchase-instructions { margin-top: 22px; color: #bbccce; font-size: 0.76rem; line-height: 1.8; }
+  .purchase-contact { border-top: 1px solid #a6e0d829; margin-top: 24px; padding-top: 20px; }
+  .purchase-contact > span { display: block; color: #bbccce; font-size: 0.64rem; }
+  .purchase-contact > a { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 5px; color: var(--book-teal); font-size: 0.95rem; font-weight: 600; }
+  .questions-grid { display: grid; grid-template-columns: 0.9fr 1.4fr; gap: 90px; }
+  .questions h2 { font-size: 2rem; }
+  .question-list details { border-bottom: 1px solid #18323b29; }
+  .question-list details:first-child { border-top: 1px solid #18323b29; }
+  .question-list summary { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 22px; font-size: 0.85rem; font-weight: 700; cursor: pointer; list-style: none; }
+  .question-list summary::-webkit-details-marker { display: none; }
+  .question-list summary span { color: #285e62; font-size: 1.2rem; font-weight: 400; }
+  .question-list details[open] summary span { transform: rotate(45deg); }
+  .question-list details p { padding-bottom: 24px; color: var(--book-muted); font-size: 0.83rem; }
+  .mobile-order { display: none; }
+  @media (min-width: 1600px) { .hero-grid { padding-block: 78px; } }
+  @media (max-width: 1100px) {
+    .book-container { width: calc(100% - 4rem); }
+    .hero-grid { gap: 15px; }
+    .hero-order { gap: 18px; }
+    .hero-price strong { font-size: 1.6rem; }
+    .section-heading, .origin-grid, .purchase-grid, .questions-grid { gap: 40px; }
+    .author-grid { gap: 28px; }
+    .author-intro { gap: 15px; }
+    .author-intro img { width: 72px; height: 72px; }
+    .author-intro p { font-size: 0.58rem; }
+    .author-card h3 { font-size: 1.15rem; }
+    .perspectives { gap: 28px; }
+    .media-grid { gap: 32px; }
+    .radio-feature { padding: 30px; }
+  }
+  @media (max-width: 800px) {
+    .book-section { padding-block: 64px; }
+    .book-nav-sections { gap: 20px; }
+    .book-nav-sections a:last-child { display: none; }
+    .hero-grid { grid-template-columns: 1.1fr 1fr; padding-top: 40px; }
+    .hero-copy .eyebrow { font-size: 0.58rem; }
+    .small-line { display: none; }
+    .book-hero h1 { font-size: 3.8rem; }
+    .book-page .hero-subtitle { font-size: 1.05rem; }
+    .book-page .hero-description { font-size: 0.86rem; }
+    .hero-book img { width: 120%; margin-left: -8%; }
+    .hero-book figcaption { display: none; }
+    .hero-bottom { gap: 20px; font-size: 0.57rem; }
+    .hero-bottom span + span::before { margin-right: 20px; }
+    .section-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 38px; }
+    .section-heading > p { max-width: 600px; }
+    .perspectives { gap: 24px; }
+    .perspectives h3 { font-size: 1.12rem; }
+    .perspectives p { font-size: 0.82rem; }
+    .origin-grid { grid-template-columns: 1fr; gap: 36px; }
+    .origin h2 br { display: none; }
+    .author-grid { grid-template-columns: 1fr; gap: 32px; }
+    .author-intro img { width: 80px; height: 80px; }
+    .author-intro p { max-width: none; font-size: 0.65rem; }
+    .author-card h3 { font-size: 1.4rem; }
+    .author-card .author-bio { font-size: 0.89rem; }
+    .author-links .text-link { font-size: 0.76rem; }
+    .media-grid { grid-template-columns: 1fr; gap: 36px; }
+    .radio-feature { gap: 32px; }
+    .radio-feature h3 { font-size: 2rem; }
+    .audio-art { max-width: 400px; }
+    .purchase { padding-block: 64px; }
+    .purchase-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .purchase-box { padding: 24px; }
+    .purchase-box .purchase-price { font-size: 2.4rem; }
+    .questions-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .book-container { width: calc(100% - 2.5rem); }
+    .book-section { padding-block: 52px; }
+    .book-nav-inner { min-height: 56px; gap: 10px; }
+    .book-nav-title { font-size: 0.75rem; gap: 8px; }
+    .book-nav-title :global(svg) { width: 17px; }
+    .book-nav-sections { gap: 16px; font-size: 0.7rem; }
+    .book-nav-sections a:first-child { display: none; }
+    .hero-grid { grid-template-columns: 1fr; gap: 30px; padding-top: 42px; padding-bottom: 28px; }
+    .hero-copy .eyebrow { font-size: 0.59rem; margin-bottom: 24px; }
+    .book-hero h1 { font-size: clamp(3.5rem, 14vw, 5rem); }
+    .book-page .hero-subtitle { font-size: 1.15rem; }
+    .book-page .hero-description { font-size: 0.9rem; }
+    .hero-order { gap: 24px; }
+    .hero-price strong { font-size: 1.7rem; }
+    .hero-order :global(.book-order-link) { flex: 1; padding-inline: 12px; font-size: 0.8rem; gap: 8px; }
+    .hero-order :global(.book-order-link svg:last-child) { display: none; }
+    .hero-book { width: min(100%, 390px); margin-inline: auto; }
+    .hero-book img { width: 100%; margin: 0; }
+    .hero-book figcaption { display: block; margin-top: 8px; font-size: 0.55rem; }
+    .hero-bottom { gap: 10px 20px; padding-block: 20px; font-size: 0.51rem; }
+    .hero-bottom span + span::before { display: none; }
+    .perspectives { grid-template-columns: 1fr; gap: 32px; }
+    .perspectives article { position: relative; padding-left: 40px; padding-top: 22px; }
+    .perspective-number { position: absolute; top: 26px; left: 0; }
+    .perspectives h3 { margin-top: 0; font-size: 1.3rem; }
+    .perspectives p { font-size: 0.88rem; }
+    .perspective-field { margin-top: 16px; }
+    .book-subject { margin-top: 32px; align-items: start; font-size: 0.8rem; }
+    .book-subject :global(svg) { margin-top: 5px; }
+    .origin-label > .text-link { margin-top: 24px; }
+    .origin-grid { gap: 28px; }
+    .origin-copy > p { font-size: 0.89rem; }
+    .radio-feature { padding: 28px; }
+    .radio-feature h3 { font-size: 1.7rem; }
+    .media-item h3 { font-size: 1.2rem; }
+    .purchase-grid { grid-template-columns: 1fr; gap: 32px; }
+    .purchase-copy h2 br { display: none; }
+    .purchase-box { padding: 28px; }
+    .purchase-box .purchase-price { font-size: 2.8rem; }
+    .mobile-order { position: fixed; inset: auto 0 0; z-index: 40; display: flex; justify-content: space-between; align-items: center; gap: 20px; background: #f7f6f0fa; color: var(--book-ink); border-top: 1px solid #18323b29; box-shadow: 0 -4px 30px #071b2b14; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); }
+    .mobile-order > div { display: grid; line-height: 1.5; }
+    .mobile-order span { font-size: 0.6rem; }
+    .mobile-order strong { font-size: 1.05rem; font-weight: 700; }
+    .mobile-order :global(.book-order-link) { background: #17454a; color: #edf6ee; }
+    .mobile-order :global(.book-order-link:hover) { background: #23626a; }
+    :global(body:has(.book-page)) { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .book-page :is(a, span) { transition: none; }
+    :global(html:has(.book-page)) { scroll-behavior: auto; }
+    :global(body:has(.book-page) .lapan-atmosphere::before) { animation: none; }
+  }
+</style>
